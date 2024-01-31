@@ -1,0 +1,41 @@
+
+apiIMDBKey:
+  k_s86h4bwp
+#k_aszbetcv
+#k_45z0qzo4
+#k_s86h4bwp
+#k_2ukkb3l2
+#k_20p4zpld
+#k_06q21vqs
+#k_3v2o169m
+#k_gy65gq6d
+#k_cc1z7ycp
+
+
+jwt:
+  secret: '[a-zA-Z0-9._]^+$Guidelines89797987forAlphabeticalArraNumeralsandOtherSymbo$'
+
+
+server:
+  port: 8026
+#  error:
+#    whitelabel:
+#      enabled: false
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/cinema
+    password: Parola14
+    username: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+#  mvc:
+#    throw-exception-if-no-handler-found: true
+#  web:
+#    resources:
+#      add-mappings: false
