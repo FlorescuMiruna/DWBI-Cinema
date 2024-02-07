@@ -5,10 +5,7 @@ import com.example.cinema.model.Oras;
 import com.example.cinema.service.FilmService;
 import com.example.cinema.service.OrasService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +24,13 @@ public class FilmController {
     @GetMapping
     public List<Film> getAllFilme(){
         return filmService.getAllFilme();
+    }
+
+
+
+    @PostMapping()
+    public Film addFilm(@RequestBody Film film){
+        filmService.addFilm(film);
+        return film;
     }
 }

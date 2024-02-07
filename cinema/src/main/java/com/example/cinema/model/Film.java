@@ -6,22 +6,21 @@ import lombok.*;
 
 import java.util.Date;
 
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@Entity
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
-
 @Table(name = "film")
 public class Film {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "id")
+
 @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-@Column(nullable = false, updatable = false)
+//@GeneratedValue(strategy = GenerationType.IDENTITY)
+//@Column(nullable = false, updatable = false)
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_film")
     private Long idFilm;
 
     private String nume;

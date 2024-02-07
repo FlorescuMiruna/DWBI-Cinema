@@ -14,42 +14,65 @@ export class FilmComponent implements OnInit {
   films: Film[] = [];
 
 
-  quoteDetails !: FormGroup;
+  filmDetails !: FormGroup;
+  myFilmObj: Film = new Film();
   ngOnInit(): void {
     this.getAllFilms();
     // this.initializeOrase();
 
-    this.quoteDetails = this.formBuilder.group({
+    this.filmDetails = this.formBuilder.group({
 
-      text: [''],
+      nume: [''],
       // person:[''],
-      theme:[''],
-      movieId: ['']
- 
+      gen: [''],
+      regizor: [''],
+      dataLansare: [''],
+      notaImdb: 0,
+      durata: 0,
+      rating: 0
+
     });
   }
-  constructor(private filmService: FilmService,private router:Router, private formBuilder: FormBuilder) { }
-  getAllFilms(){
-    console.log('testt getAllBooks')
+  constructor(private filmService: FilmService, private router: Router, private formBuilder: FormBuilder) { }
+  getAllFilms() {
     this.filmService.getAllFilms().subscribe(res => {
-
       this.films = res;
-      // this.mostPopularMovies = this.mostPopularMovies.slice(0,5); // de sters
-      // this.cinema.forEach((book) => {
-      //   if (book.cover) {
-      //     book.cover = 'data:image/jpeg;base64,' + book.cover;
-      //     console.log("Book with cover:", book);
-      //   }
-      // });
       console.log("all films:", this.films)
+    }, err => {
+      console.log(err)
+    });
+  }
+
+  addFilm() {
+    console.log(this.filmDetails);
+    this.myFilmObj.nume = this.filmDetails.value.nume;
+    this.myFilmObj.gen = this.filmDetails.value.gen;
+    this.myFilmObj.regizor = this.filmDetails.value.regizor;
+    this.myFilmObj.dataLansare = this.filmDetails.value.dataLansare.toLocaleString("en-US");
+    this.myFilmObj.notaImdb = this.filmDetails.value.notaImdb;
+    this.myFilmObj.durata = this.filmDetails.value.durata;
+    this.myFilmObj.rating = this.filmDetails.value.rating;
+    console.log('myFilmObj',this.myFilmObj);
+
+    this.filmService.addFilm(this.myFilmObj).subscribe(res => {
+      // console.log("res", res);
+      this.getAllFilms();
+      // Swal.fire({
+      //   position: 'center',
+      //   // imageUrl: res.movie.posterUrl,
+      //   // imageHeight: 150,
+      //   // imageWidth: 150,
+      //   icon: 'success',
+      //   title: `The quote from ${res.movie.title} was added to your list`,
+      //   showConfirmButton: false,
+      //   timer: 2000
+      // })
 
     }, err => {
-      console.log("Error while fetching data", err)
-    });
-  }
-  
-  addFilm() {
+      console.log("EROARE");
+      console.log(err);
 
+    });
   }
 
 }

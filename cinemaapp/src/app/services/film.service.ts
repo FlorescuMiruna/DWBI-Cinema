@@ -20,4 +20,10 @@ export class FilmService {
     console.log(this.getFilmsURL)
     return this.http.get<Film[]>(this.getFilmsURL);
   }
+
+  addFilm(film : Film): Observable<Film> {
+    var URL = this.getFilmsURL;
+    console.log(URL);
+    return this.http.post<Film>(URL,film);
+  }
 }
