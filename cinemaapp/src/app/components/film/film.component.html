@@ -1,0 +1,118 @@
+<nav>
+
+    <ul>
+        <li class="logo-img"> <img src="assets/cinema.png"></li>
+        <li class="logo">Cinema</li>
+
+
+        <li class="btn"><span class="fas fa-bars"></span></li>
+        <div class="items">
+            <li><a href="/home">Cinema</a></li>
+            <li><a href="/home">Filme</a></li>
+            <li><a href="/home">Bilete</a></li>
+            <li><a href="/home">Clienti</a></li>
+            <li><a href="/home">Rezervari</a></li>
+
+        </div>
+
+
+    </ul>
+</nav>
+
+<div class="table">
+  <table class="table table-striped" >
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nume</th>
+        <th scope="col">Gen</th>
+        <th scope="col">Regizor</th>
+        <th scope="col">Data lansare</th>
+        <th scope="col">Nota IMDB</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Durata</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let  film of films ">
+        <th scope="row" >{{film.idFilm}}</th>
+        <td>{{film.nume}} </td>
+        <td>{{film.gen}}</td>
+
+        <td>{{film.regizor}}</td>
+        <td>{{film.dataLansare}}</td>
+
+        <td>{{film.notaImdb}}</td>
+        <td>{{film.rating}}</td>
+        <td>{{film.durata}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+
+<button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#addQuote">Adauga un film</button>
+
+<!-- Add Quote Modal -->
+<div class="modal fade" id="addQuote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Adauga un film</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form [formGroup]="quoteDetails">
+                  <div class="mb-3 ">
+                      <label for="exampleInputText" class="form-label ">Nume</label>
+                      <input type="text" formControlName="text" class="form-control " id="text" aria-describedby="textHelp ">
+
+                  </div>
+
+                  <div class="mb-3 ">
+                    <label for="exampleInputText" class="form-label ">Gen</label>
+                    <input type="text" formControlName="text" class="form-control " id="text" aria-describedby="textHelp ">
+
+                </div>
+
+
+                <div class="mb-3 ">
+                    <label for="exampleInputText" class="form-label ">Regizor</label>
+                    <input type="text" formControlName="text" class="form-control " id="text" aria-describedby="textHelp ">
+
+                </div>
+
+                <div class="mb-3 ">
+                    <label for="exampleInputText" class="form-label ">Data Lansare</label>
+                    <input type="date" formControlName="text" class="form-control " id="text" aria-describedby="textHelp ">
+
+                </div>
+
+                <div class="mb-3 ">
+                    <label for="exampleInputText" class="form-label ">Nota IMDB</label>
+                    <input type="number" formControlName="text" class="form-control " id="text" aria-describedby="textHelp ">
+
+                </div>
+                <div class="mb-3 ">
+                    <label for="exampleInputText" class="form-label ">Rating</label>
+                    <input type="number" formControlName="text" class="form-control " id="text" aria-describedby="textHelp ">
+
+                </div>
+                <div class="mb-3 ">
+                    <label for="exampleInputText" class="form-label ">Durata</label>
+                    <input type="number" formControlName="text" class="form-control " id="text" aria-describedby="textHelp ">
+
+                </div>
+                  <div class="modal-footer">
+
+                      <button type="button" class="btn btn-primary" (click)="addFilm()" data-bs-dismiss="modal">Adauga Film</button>
+                  </div>
+
+
+              </form>
+          </div>
+
+      </div>
+  </div>
+</div>
