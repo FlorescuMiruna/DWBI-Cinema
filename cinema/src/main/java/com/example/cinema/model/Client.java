@@ -16,8 +16,8 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long idBilet;
+    @Column(name = "id_client")
+    private Long idClient;
 
     private String nume;
     private String prenume;

@@ -8,22 +8,18 @@ import { Film } from '../interfaces/film';
 })
 export class FilmService {
   private host = 'http://localhost:8026';
-  private getFilmsURL;
+  private URL;
   constructor(private http: HttpClient) {
-    this.getFilmsURL = `${this.host}/film`;
-    // this.getBookByIdURL = `${this.host}/book`;
-    // this.addBookToTBRURL = `${this.host}/book`;
-    // this.removeBookFromTBRURL = `${this.host}/book`;
+    this.URL = `${this.host}/film`;
   }
 
   getAllFilms(): Observable<Film[]> {
-    console.log(this.getFilmsURL)
-    return this.http.get<Film[]>(this.getFilmsURL);
+    console.log(this.URL)
+    return this.http.get<Film[]>(this.URL);
   }
 
   addFilm(film : Film): Observable<Film> {
-    var URL = this.getFilmsURL;
     console.log(URL);
-    return this.http.post<Film>(URL,film);
+    return this.http.post<Film>(this.URL,film);
   }
 }
