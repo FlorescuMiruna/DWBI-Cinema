@@ -59,16 +59,16 @@ export class FilmComponent implements OnInit {
     console.log('myFilmObj', this.myFilmObj);
 
     this.filmService.addFilm(this.myFilmObj).subscribe(res => {
-      this.filmDetails = this.formBuilder.group({
-        nume: [''],
-        gen: [''],
-        regizor: [''],
-        dataLansare: [''],
-        notaImdb: 0,
-        durata: 0,
-        rating: 0
+      // this.filmDetails = this.formBuilder.group({
+      //   nume: [''],
+      //   gen: [''],
+      //   regizor: [''],
+      //   dataLansare: [''],
+      //   notaImdb: 0,
+      //   durata: 0,
+      //   rating: 0
 
-      });
+      // });
       this.getAllFilms();
       this.initializeForm();
       

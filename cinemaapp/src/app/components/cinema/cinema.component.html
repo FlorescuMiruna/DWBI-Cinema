@@ -56,22 +56,22 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="quoteDetails">
+                <form [formGroup]="cinemaDetails">
                     <div class="mb-3 ">
                         <label for="exampleInputText" class="form-label ">Nume</label>
-                        <input type="text" formControlName="text" class="form-control " id="text" aria-describedby="textHelp ">
+                        <input type="text" formControlName="nume" class="form-control " id="text" aria-describedby="textHelp ">
 
                     </div>
 
                     <div class="mb-3 ">
                         <label for="exampleInputText" class="form-label ">Numar locuri</label>
-                        <input type="number" formControlName="text" class="form-control " id="text" aria-describedby="textHelp ">
+                        <input type="number" formControlName="nrLocuri" class="form-control " id="text" aria-describedby="textHelp ">
 
                     </div>
 
                     <div class="mb-3 ">
                         <label for="exampleInputText" class="form-label ">Numar sali</label>
-                        <input type="number" formControlName="text" class="form-control " id="text" aria-describedby="textHelp ">
+                        <input type="number" formControlName="nrSali" class="form-control " id="text" aria-describedby="textHelp ">
 
                     </div>
                     <!-- <div class="mb-3">
@@ -91,7 +91,7 @@
 
                     <div>
                         <label for="exampleInputText" class="form-label ">Oras</label>
-                        <select name="movieId" class="form-control" id="movieId" formControlName="movieId">
+                        <select name="movieId" class="form-control" id="movieId" formControlName="idOras">
                
                           <option  *ngFor="let oras of orase" value={{oras.idOras}}>{{oras.nume}}</option>
                    

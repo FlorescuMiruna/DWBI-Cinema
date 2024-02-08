@@ -9,16 +9,26 @@ import { Cinema } from '../interfaces/cinema';
 export class CinemaService {
 
   private host = 'http://localhost:8026';
-  private getCinemasURL;
+  private URL;
   constructor(private http: HttpClient) {
-    this.getCinemasURL = `${this.host}/cinema`;
+    this.URL = `${this.host}/cinema`;
     // this.getBookByIdURL = `${this.host}/book`;
     // this.addBookToTBRURL = `${this.host}/book`;
     // this.removeBookFromTBRURL = `${this.host}/book`;
   }
 
   getAllCinemas(): Observable<Cinema[]> {
-    console.log(this.getCinemasURL)
-    return this.http.get<Cinema[]>(this.getCinemasURL);
+
+    return this.http.get<Cinema[]>(this.URL);
+  }
+
+  // addCinema(): Observable<Cinema[]> {
+
+  //   return this.http.get<Cinema[]>(this.URL);
+  // }
+
+  addCinema(cinema : Cinema, id: number): Observable<Cinema> {
+    this.URL = this.URL + '/oras/' + id;
+    return this.http.post<Cinema>(this.URL,cinema);
   }
 }

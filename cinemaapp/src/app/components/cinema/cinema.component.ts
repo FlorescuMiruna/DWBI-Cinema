@@ -14,105 +14,66 @@ import { environment } from 'src/environments/environment.prod';
   templateUrl: './cinema.component.html',
   styleUrls: ['./cinema.component.css']
 })
-export class CinemaComponent implements OnInit{
+export class CinemaComponent implements OnInit {
 
   cinemas: Cinema[] = [];
   orase: Oras[] = [];
-  quoteDetails !: FormGroup;
-  constructor(private cinemService: CinemaService,private router:Router, private formBuilder: FormBuilder, private orasService: OrasService) { }
+  cinemaDetails !: FormGroup;
+  myCinemaObj: Cinema = new Cinema();
+  constructor(private cinemService: CinemaService, private router: Router, private formBuilder: FormBuilder, private orasService: OrasService) { }
   ngOnInit(): void {
     this.getAllCinemas();
     this.initializeOrase();
+    this.initializeForm();
 
-    this.quoteDetails = this.formBuilder.group({
+  }
 
-      text: [''],
-      // person:[''],
-      theme:[''],
-      movieId: ['']
- 
+  initializeForm() {
+    this.cinemaDetails = this.formBuilder.group({
+      nume: [''],
+      nrLocuri: [''],
+      nrSali: [''],
+      idOras: 0
+
     });
   }
   initializeOrase() {
     this.orasService.getAllOrase().subscribe(res => {
-      this.orase =  res;
+      this.orase = res;
       console.log(this.orase)
     })
   }
 
-  getAllCinemas(){
-    console.log('testt getAllBooks')
+  getAllCinemas() {
     this.cinemService.getAllCinemas().subscribe(res => {
-
       this.cinemas = res;
-      // this.mostPopularMovies = this.mostPopularMovies.slice(0,5); // de sters
-      // this.cinema.forEach((book) => {
-      //   if (book.cover) {
-      //     book.cover = 'data:image/jpeg;base64,' + book.cover;
-      //     console.log("Book with cover:", book);
-      //   }
-      // });
-      console.log("all books:", this.cinemas)
-
+      console.log("all cinemas:", this.cinemas)
     }, err => {
       console.log("Error while fetching data", err)
     });
   }
 
 
-  addCinema(){
-
-    // this.myQuoteObj.text = this.quoteDetails.value.text;
-    // // this.myQuoteObj.person = this.quoteDetails.value.person;
-    // this.myQuoteObj.theme = this.quoteDetails.value.theme;
-
-    // var movieId = this.quoteDetails.value.movieId;
-  
-    // console.log("Form",this.quoteDetails.value)
-    // console.log("OBJ",this.myQuoteObj)
-
-
-    // // if(this.authenticationService.getUserFromLocalCache().movies.length === 0){
-  
-    // // }
-
-    // if(this.quoteDetails.value.movieId === "")
-    // {
-    //   Swal.fire({
-    //     icon: 'error',
-     
-    //     title: "You must select a movie in order to add the quote!",
-        
-    //   })
-    // }
-    // else{
-    //   let userId = this.authenticationService.getUserFromLocalCache().id;
-
-    // this.quoteService.addQuote(this.myQuoteObj, movieId, userId).subscribe(res => {
-    //   // console.log("res", res);
-    //   this.initializeQuotes();
-    //   Swal.fire({
-    //     position: 'center',
-    //     // imageUrl: res.movie.posterUrl,
-    //     // imageHeight: 150,
-    //     // imageWidth: 150,
-    //     icon: 'success',
-    //     title: `The quote from ${res.movie.title} was added to your list`,
-    //     showConfirmButton: false,
-    //     timer: 2000
-    //   })
-
-    // }, err => {
-    //   console.log("EROARE");
-    //   console.log(err);
-
-    // });
-
-    // }
-
+  addCinema() {
+    console.log('cinemaDetails', this.cinemaDetails);
+    this.myCinemaObj.nume = this.cinemaDetails.value.nume;
+    this.myCinemaObj.nrLocuri = this.cinemaDetails.value.nrLocuri;
+    this.myCinemaObj.nrSali = this.cinemaDetails.value.nrSali;
     
+
+    console.log('myCinemaObj', this.myCinemaObj);
+    this.cinemService.addCinema(this.myCinemaObj, this.cinemaDetails.value.idOras).subscribe(res => {
+      location.reload();
+      this.getAllCinemas();
+      this.initializeForm();
+      
+    }, err => {
+      console.log(err);
+    });
   }
 
-  
+  }
 
-}
+
+
+

@@ -8,15 +8,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class OrasService {
 
-  constructor(private http: HttpClient) { 
-    this.getOraseURL = `${this.host}/oras`;
-  }
 
   private host = 'http://localhost:8026';
-  private getOraseURL;
+  private URL;
+
+  constructor(private http: HttpClient) {
+    this.URL = `${this.host}/oras`;
+  }
+
 
   getAllOrase(): Observable<Oras[]> {
-    console.log(this.getOraseURL)
-    return this.http.get<Oras[]>(this.getOraseURL);
+    console.log(this.URL)
+    return this.http.get<Oras[]>(this.URL);
   }
 }

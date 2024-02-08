@@ -24,8 +24,9 @@ import java.util.List;
 public class Cinema {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_cinema")
+//    @Column(nullable = false, updatable = false)
     private Integer idCinema;
 
     private String nume;

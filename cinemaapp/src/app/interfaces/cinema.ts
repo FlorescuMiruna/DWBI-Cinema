@@ -14,7 +14,7 @@ export class Cinema {
      this.nume = '';
      this.nrSali = null as any;
      this.nrLocuri = null as any;
-     this.oras = null as any;
+     this.oras = new Oras();
    }
 
 }

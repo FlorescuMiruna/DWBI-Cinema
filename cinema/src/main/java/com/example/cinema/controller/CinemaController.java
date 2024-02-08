@@ -3,10 +3,7 @@ package com.example.cinema.controller;
 import com.example.cinema.model.Cinema;
 import com.example.cinema.service.CinemaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.awt.print.Book;
 import java.util.List;
@@ -26,6 +23,12 @@ public class CinemaController {
     @GetMapping
     public List<Cinema> getAllCinemas(){
         return cinemaService.getAllCinemas();
+    }
+
+    @PostMapping("/oras/{orasId}")
+    public Cinema addCinema(@RequestBody Cinema cinema, @PathVariable String orasId){
+        cinemaService.addCinema(cinema, Integer.parseInt(orasId));
+        return cinema;
     }
 
 }
