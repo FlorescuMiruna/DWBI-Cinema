@@ -1,0 +1,96 @@
+<nav>
+
+    <ul>
+        <li class="logo-img"> <img src="assets/cinema.png"></li>
+        <li class="logo">Cinema</li>
+
+
+        <li class="btn"><span class="fas fa-bars"></span></li>
+        <div class="items">
+            <li><a href="/cinema">Cinema</a></li>
+            <li><a href="/film">Filme</a></li>
+            <li><a href="/home">Bilete</a></li>
+            <li><a href="/client">Clienti</a></li>
+            <li><a href="/home">Rezervari</a></li>
+
+        </div>
+
+
+    </ul>
+</nav>
+
+<div class="table">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nume</th>
+                <th scope="col">PRENUME</th>
+                <th scope="col">EMAIL</th>
+                <th scope="col">NUMAR TELEFON</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let  client of clients ">
+                <th scope="row">{{client.idClient}}</th>
+                <td>{{client.nume}} </td>
+                <td>{{client.prenume}}</td>
+
+                <td>{{client.email}}</td>
+                <td>{{client.nrTelefon}}</td>
+
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#addQuote" style="display: block; margin: 0 auto; margin-bottom: 20px; ">Adauga un client</button>
+
+
+<!-- Add Quote Modal -->
+<div class="modal fade" id="addQuote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Adauga un client</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="clientDetails">
+                    <div class="mb-3 ">
+                        <label for="exampleInputText" class="form-label ">Nume</label>
+                        <input type="text" formControlName="nume" class="form-control " id="text" aria-describedby="textHelp ">
+
+                    </div>
+
+                    <div class="mb-3 ">
+                        <label for="exampleInputText" class="form-label ">Prenume</label>
+                        <input type="text" formControlName="prenume" class="form-control " id="text" aria-describedby="textHelp ">
+
+                    </div>
+
+
+                    <div class="mb-3 ">
+                        <label for="exampleInputText" class="form-label ">Email</label>
+                        <input type="text" formControlName="email" class="form-control " id="text" aria-describedby="textHelp ">
+
+                    </div>
+
+                    <div class="mb-3 ">
+                        <label for="exampleInputText" class="form-label ">Numar Telefon</label>
+                        <input type="email" formControlName="nrTelefon" class="form-control " id="text" aria-describedby="textHelp ">
+
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-success" (click)="addClient()" data-bs-dismiss="modal">Adauga Client</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
